@@ -1,0 +1,5 @@
+#gitignore these files
+.idea/
+lab2_log121.iml
+.idea/uiDesigner.xml
+.idea/vcs.xml
