@@ -1,6 +1,7 @@
 package Framework;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Jeu {
     int nb_tours;
@@ -15,8 +16,12 @@ public class Jeu {
         collectionDes = new CollectionDes();
         collectionJoueurs = new CollectionJoueur();
         initParamJeu();
-        while(collectionDes.getDes_collection().iterator().hasNext()){
-            collectionDes.getDes_collection().iterator().next().throwingDie();
+
+        for (Iterator i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext();i.next()) {
+            for (Iterator j = collectionDes.getDes_collection().iterator(); j.hasNext();j.next()) {
+                collectionJoueurs.getJoueur_collection().iterator().next().setResult(collectionDes.getDes_collection().iterator().next().throwingDie());
+            }
+            System.out.println(collectionJoueurs.getJoueur_collection().iterator().next().getResult());
         }
     }
 
