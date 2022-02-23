@@ -2,10 +2,28 @@ package Framework;
 
 import java.util.Collection;
 
-public abstract class Joueur implements Comparable{
+public class Joueur implements Comparable {
+
+    private  int id;
     private String name;
     private int score;
-    private Collection<De> liste_des;
 
-    public Joueur(){}
+    public Joueur() {
+
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
+
 }

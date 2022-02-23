@@ -7,20 +7,10 @@ public class CollectionJoueur {
     Collection<Joueur> joueur_collection;
 
     public void ajouterJoueur(Joueur joueur){
-
+        joueur_collection.add(joueur);
     }
 
-    public Iterator<Joueur> creeIterateur(){
-        return new Iterator<Joueur>() {
-            @Override
-            public boolean hasNext() {
-                return false;
-            }
-
-            @Override
-            public Joueur next() {
-                return null;
-            }
-        };
+    public Collection<Joueur> getJoueur_collection() {
+        return joueur_collection;
     }
 }

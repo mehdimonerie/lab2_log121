@@ -15,14 +15,16 @@ public class main {
 
     public static void main(String[] args) {
 
+        Jeu game1 = new Jeu();
+
+        /*
         Jeu_bunco jeu = new Jeu_bunco();
         Environnement environnement = new Environnement();
         environnement.setJeu(jeu);
 
-
         FenetrePrincipale fenetre = new FenetrePrincipale();
-
         environnement.addPropertyChangeListener(fenetre);
         environnement.execute();
+        */
     }
 }

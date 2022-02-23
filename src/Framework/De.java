@@ -2,11 +2,19 @@ package Framework;
 
 import java.util.ArrayList;
 
-public abstract class De implements Comparable {
+public class De implements Comparable {
     private int actual_face;
-    private ArrayList<Integer> list_face ;
+    private ArrayList<Integer> list_face;
+    private int nbFaces;
 
-    public De(){
+    public De(int nbFaces){
+        this.nbFaces = nbFaces;
+    }
+
+    public int throwingDie(){
+        int result = (int)(Math.random( )*nbFaces + 1);
+
+        return result;
     }
 
     @Override
