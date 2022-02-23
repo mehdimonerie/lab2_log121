@@ -9,7 +9,13 @@ public class Joueur_bunco extends Joueur {
 
 
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(Joueur o) {
+        int retour=0;
+        if (this.score > o.getScore()){
+            retour = 1;
+        } else if (this.score < o.getScore()){
+            retour = -1;
+        }
+        return retour;
     }
 }
