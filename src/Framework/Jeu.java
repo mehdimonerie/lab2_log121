@@ -17,11 +17,11 @@ public class Jeu {
         collectionJoueurs = new CollectionJoueur();
         initParamJeu();
 
-        for (Iterator i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext();i.next()) {
-            for (Iterator j = collectionDes.getDes_collection().iterator(); j.hasNext();j.next()) {
-                collectionJoueurs.getJoueur_collection().iterator().next().setResult(collectionDes.getDes_collection().iterator().next().throwingDie());
+        for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext();) {
+            Joueur a = i.next();
+            for (Iterator<De> j = collectionDes.getDes_collection().iterator(); j.hasNext();) {
+                a.setResult(j.next().throwingDie());
             }
-            System.out.println(collectionJoueurs.getJoueur_collection().iterator().next().getResult());
         }
     }
 
@@ -33,6 +33,7 @@ public class Jeu {
         }
         for(int i = 0; i < nbDes; i++){
             De de = new De(nbFaceDe);
+            de.setId(i+1);
             collectionDes.ajouterDe(de);
         }
     }
