@@ -13,7 +13,7 @@ public class Jeu {
     CollectionDes collectionDes;
 
     public Jeu(){
-        collectionDes = new CollectionDes();
+        collectionDes = new CollectionDes(nbDes, nbFaceDe);
         collectionJoueurs = new CollectionJoueur();
         initParamJeu();
 

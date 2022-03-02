@@ -40,4 +40,6 @@ public class CollectionJoueur {
     }
 
 
+    public Collection<Joueur> getJoueur_collection() { return joueur_collection;
+    }
 }

@@ -8,6 +8,14 @@ public class CollectionDes {
     Collection<De> des_collection = new ArrayList<>();
 
 
+    // constructeur si tous les des de la collection ont le meme nb de face
+    public CollectionDes(int nbDes, int nbFace){
+        for (int i=0; i<nbDes; i++){
+            De de = new De(nbFace);
+            ajouterDe(de);
+        }
+    }
+
     public void ajouterDe(De de){
         des_collection.add(de);
     }
