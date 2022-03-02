@@ -16,6 +16,9 @@ public class CollectionDes {
         }
     }
 
+    //constructeur de collection vide
+    public CollectionDes(){}
+
     public void ajouterDe(De de){
         des_collection.add(de);
     }
