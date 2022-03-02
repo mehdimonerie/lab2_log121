@@ -1,37 +1,39 @@
 package Framework;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class Joueur implements Comparable<Joueur>{
+public class Joueur implements Comparable {
+
+    private  int id;
     private String name;
-    private int score = 0;
-    private Collection<De> liste_des;
+    private int score;
+    private ArrayList<Integer> result = new ArrayList<Integer>();
 
-    public Joueur(){}
+    public Joueur() {
 
-    public void setListe_des(Collection<De> liste_des) {
-        this.liste_des = liste_des;
+
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public ArrayList<Integer> getResult() {
+        return result;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setResult(int val) {
+        this.result.add(val);
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public int getScore() {
-        return score;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Collection<De> getListe_des() {
-        return liste_des;
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 
-    public abstract int compareTo(Joueur o);
 }
