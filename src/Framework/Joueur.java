@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public abstract class Joueur implements Comparable<Joueur>{
     private String name;
-    private int score;
+    private int score = 0;
     private Collection<De> liste_des;
 
     public Joueur(){}

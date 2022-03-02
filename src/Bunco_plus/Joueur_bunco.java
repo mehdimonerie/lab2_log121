@@ -18,4 +18,12 @@ public class Joueur_bunco extends Joueur {
         }
         return retour;
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
+    }
 }
