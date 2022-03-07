@@ -10,12 +10,18 @@ public class De implements Comparable {
 
     public De(int nbFaces){
         this.nbFaces = nbFaces;
+
     }
 
     public int throwingDie(){
-        int result = (int)(Math.random( )*nbFaces + 1);
+        int actual_face_ = (int)(Math.random( )*nbFaces + 1);
+        this.actual_face=actual_face_;
+        System.out.println(actual_face);
+        return actual_face;
+    }
 
-        return result;
+    public int getActual_face() {
+        return actual_face;
     }
 
     public int getId() {
@@ -29,5 +35,12 @@ public class De implements Comparable {
     @Override
     public int compareTo(Object o) {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "De{" +
+                "actual_face=" + actual_face +
+                '}';
     }
 }

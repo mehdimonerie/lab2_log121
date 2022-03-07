@@ -11,10 +11,36 @@ import java.util.Collection;
 
 public class Jeu_bunco extends Jeu {
 
-    private int nb_tours = 6;
-    private int actual_tour;
+    private final int nb_tours = 6;
+    private final int score_gagnant = 21;
+    private int actual_tour= 0;
+    private int nb_joueurs = 3;
     private CollectionJoueur collection_joueur;
     private CollectionDes collectionDes;
+
+    public Jeu_bunco(){
+        super();
+    }
+
+
+
+    public int getActual_tour() {
+        return actual_tour;
+    }
+
+    public void setActual_tour(int actual_tour) {
+        this.actual_tour = actual_tour;
+    }
+
+    public int getNb_joueurs() {
+        return nb_joueurs;
+    }
+
+    public void setNb_joueurs(int nb_joueurs) {
+        this.nb_joueurs = nb_joueurs;
+    }
+
+
 
     public void calculerScoreTour(){
         /*TODO --> cumule le score du joueur de ce tour avec celui du tour precedent
@@ -46,5 +72,8 @@ public class Jeu_bunco extends Jeu {
 
          */
     }
+
+
+
 
 }

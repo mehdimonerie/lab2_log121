@@ -7,6 +7,10 @@ import java.util.Iterator;
 public class CollectionJoueur {
     Collection<Joueur> joueur_collection  = new ArrayList<>();
 
+    public CollectionJoueur() {
+        joueur_collection = new ArrayList<Joueur>();
+    }
+
     public void ajouterJoueur(Joueur joueur){
         joueur_collection.add(joueur);
     }

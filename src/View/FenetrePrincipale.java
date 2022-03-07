@@ -4,6 +4,7 @@ import Framework.Jeu;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -16,13 +17,22 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 	private static final String TITRE_FENETRE = "Laboratoire 2 : LOG121 - Brunco+";
 	private static final Dimension DIMENSION = new Dimension(700, 700);
 	private Jeu jeu = null;
+	private String jeu_choisi =null;
 
 	PanneauPrincipal panneauPrincipal;
-
+	PanneauMenu panneauMenu;
 	public FenetrePrincipale() {
 		panneauPrincipal = new PanneauPrincipal();
+		panneauMenu = new PanneauMenu();
+
 		MenuFenetre menuFenetre = new MenuFenetre();
-		add(panneauPrincipal);
+		add(panneauMenu);
+		panneauMenu.buttonJeu1.addActionListener((ActionEvent e) -> {
+			this.jeu_choisi = panneauMenu.buttonJeu1.getText();
+			System.out.println(this.jeu_choisi);
+			panneauMenu.setVisible(false);
+			add(panneauPrincipal);
+		});
 		add(menuFenetre, BorderLayout.NORTH);
 		// Faire en sorte que le X de la fen�tre ferme la fen�tre
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
