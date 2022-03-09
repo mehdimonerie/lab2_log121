@@ -28,6 +28,23 @@ public class Jeu {
         }
     }
 
+    //À voir
+    //public void getWinner (CollectionJoueur collectionJoueurs) {
+    //    for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext(); ) {
+    //        Joueur a = i.next();
+    //     //   listScores.add(a.getResult());
+    //    }
+    //    int a = collectionJoueurs.getJoueur_collection().stream().mapToInt(Joueur::getResult).max().orElse(-1);
+//
+    //    Joueur gagnant;
+    //   for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext(); ) {
+    //        gagnant = i.next();
+    //        if (gagnant.getResult() == a) {
+    //            System.out.println("Les gagnant du tour est Joueur " + gagnant.getId() + " avec le score de " + gagnant.getResult() + " points.");
+    //        }
+    //    }
+    //}
+
     public void initParamJeu(){
         for(int i = 0; i < nbJoueurs; i++){
             CollectionDes collectionDes = new CollectionDes();
@@ -48,6 +65,7 @@ public class Jeu {
 
     public void calculerScoreTour(){
     }
+
     public CollectionJoueur calculerLeVainqueur(){
         return null;
     }

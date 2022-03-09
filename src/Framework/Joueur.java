@@ -3,13 +3,13 @@ package Framework;
 import java.util.ArrayList;
 import java.util.Collection;
 
-//public class Joueur implements Comparable {
 
 public class Joueur implements Comparable<Joueur>{
     private  int id;
     private String name;
     private int score;
-    private ArrayList<Integer> result = new ArrayList<Integer>();
+    private int result;
+    private ArrayList<Integer> listResult = new ArrayList<Integer>();
     private CollectionDes liste_des;
 
     public Joueur(CollectionDes collection_des_){
@@ -25,15 +25,13 @@ public class Joueur implements Comparable<Joueur>{
 
 
     public ArrayList<Integer> getResult() {
+        return listResult;
+    }
+    public int addResult(){
+        for(int i = 0; i < listResult.size();i++) {
+            this.result += listResult.get(i);
+        }
         return result;
-    }
-
-    public void setResult(int val) {
-        this.result.add(val);
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setId(int id) {
@@ -44,16 +42,16 @@ public class Joueur implements Comparable<Joueur>{
         this.liste_des = liste_des;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setScore(int score) {
         this.score = score;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getScore() {
@@ -63,10 +61,12 @@ public class Joueur implements Comparable<Joueur>{
     public CollectionDes getListe_des() {
         return liste_des;
     }
-    public void setResult(ArrayList<Integer> result) {
-        this.result = result;
+    public void setlistResult(int val) {
+        this.listResult.add(val);
     }
-
+    public ArrayList<Integer> getlisteResult(){
+        return listResult;
+    }
     public int compareTo(Joueur joueur) {
         Joueur j = joueur;
         int retour=0;
@@ -88,5 +88,10 @@ public class Joueur implements Comparable<Joueur>{
                 ", liste_des=" + liste_des.toString() +
                 '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
 
 }
