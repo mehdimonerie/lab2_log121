@@ -4,83 +4,56 @@ import java.util.*;
 
 public class Jeu {
     int nb_tours;
-    private ArrayList<Integer> listScores = new ArrayList<Integer>();
+    int tour = 1;
 
     int nbJoueurs;
     int nbDes;
     int nbFaceDe;
+    String joueurs = "Veuillez rentrer le nombre de joueurs";
+    String tours = "Veuillez rentrer le nombre de tours";
+    String de = "Veuillez rentrer le nombre de De";
+    String faceDe = "Veuillez rentrer le nombre de De";
 
     CollectionJoueur collectionJoueurs;
     CollectionDes collectionDes;
 
     public Jeu(){
-        Scanner input = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Veuillez entrer the number of playoueur");
-        do {
-            System.out.print("Please enter a positive number: ");
-            while (!input.hasNextInt()) {
-                String scan = input.next();
-                System.out.printf("\"%s\" is not a valid number.%n", scan);
-            }
-            nbJoueurs = input.nextInt();
-        } while (nbJoueurs < 0);
-
-        System.out.println("Veuillez rentrer le nombre de De");
-        do {
-            System.out.print("Please enter a positive number: ");
-            while (!input.hasNextInt()) {
-                String scan = input.next();
-                System.out.printf("\"%s\" is not a valid number.%n", scan);
-            }
-            nbDes = input.nextInt();
-        } while (nbDes < 0);
-
-        System.out.println("Veuillez rentrer le nombre de face par De");
-        do {
-            System.out.print("Please enter a positive number: ");
-            while (!input.hasNextInt()) {
-                String scan = input.next();
-                System.out.printf("\"%s\" is not a valid number.%n", scan);
-            }
-            nbFaceDe = input.nextInt();
-        } while (nbFaceDe < 0);
-
+        nbJoueurs = getInput(joueurs);
+        nb_tours = getInput(tours);
+        nbDes = getInput(de);
+        nbFaceDe = getInput(faceDe);
 
         collectionJoueurs = new CollectionJoueur();
         initParamJeu();
-
-        for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext();) {
-            Joueur a = i.next();
-            for (Iterator<De> j = a.getListe_des().getDes_collection().iterator(); j.hasNext();) {
-                a.setlistResult(j.next().throwingDie());
+        do {
+            for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext(); ) {
+                Joueur a = i.next();
+                for (Iterator<De> j = a.getListe_des().getDes_collection().iterator(); j.hasNext(); ) {
+                    a.setlistResult(j.next().throwingDie());
+                }
+                a.addResult();
             }
-            a.addResult();
-        }
-
-        for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext();) {
-            Joueur a = i.next();
-            System.out.println("Joueur " + a.getId() + " : " + a.getlisteResult());
-        }
+            for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext(); ) {
+                Joueur a = i.next();
+            }
+            tour++;
+        }while(tour < nb_tours);
         getWinner(collectionJoueurs);
     }
 
     public void getWinner (CollectionJoueur collectionJoueurs){
-        for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext();) {
-            Joueur a = i.next();
-            listScores.add(a.getResult());
-        }
-        int a = collectionJoueurs.getJoueur_collection().stream().mapToInt(Joueur::getResult).max().orElse(-1);
 
+        int a = collectionJoueurs.getJoueur_collection().stream().mapToInt(Joueur::getResult).max().orElse(-1);
         Joueur gagnant;
         for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext();) {
             gagnant = i.next();
             if (gagnant.getResult() == a){
-                System.out.println("Les gagnant du tour est Joueur " + gagnant.getId() + " avec le score de " + gagnant.getResult() + " points.");
+                System.out.println("Les gagnant est Joueur " + gagnant.getId() + " avec le score de " + gagnant.getResult() + " points.");
             }
         }
 
-
     }
+
     public void initParamJeu(){
 
         for(int i = 0; i < nbJoueurs; i++){
@@ -97,7 +70,23 @@ public class Jeu {
 
     }
 
+    public int getInput(String question){
+        int entry;
+        Scanner input = new Scanner(System.in);  // Create a Scanner object
+        System.out.println(question); // User decide le nombre de joueurs
+        do {
+            System.out.print("Please enter a positive number: ");
+            while (!input.hasNextInt()) {
+                String scan = input.next();
+                System.out.printf("\"%s\" is not a valid number.%n", scan);
+            }
+            entry = input.nextInt();
+        } while (entry < 0);
+        return entry;
+    }
+
     public void loop(){
+
     }
 
     public void calculerScoreTour(){

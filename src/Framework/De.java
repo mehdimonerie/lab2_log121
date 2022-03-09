@@ -14,8 +14,12 @@ public class De implements Comparable {
 
     public int throwingDie(){
         int result = (int)(Math.random( )*nbFaces + 1);
-
+        actual_face = result;
         return result;
+    }
+
+    public int getActual_face(){
+        return actual_face;
     }
 
     public int getId() {
