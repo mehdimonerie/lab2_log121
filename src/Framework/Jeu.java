@@ -1,6 +1,5 @@
 package Framework;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 public class Jeu {
@@ -49,7 +48,8 @@ public class Jeu {
 
     public void calculerScoreTour(){
     }
-    public void calculerLeVainqueur(){
+    public CollectionJoueur calculerLeVainqueur(){
+        return null;
     }
 
     public CollectionJoueur getCollectionJoueurs() {

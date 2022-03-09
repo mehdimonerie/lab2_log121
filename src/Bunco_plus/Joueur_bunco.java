@@ -5,13 +5,19 @@ import Framework.CollectionJoueur;
 import Framework.Joueur;
 
 public class Joueur_bunco extends Joueur {
-
     private int score = 0;
     private String name;
     CollectionDes collection_des;
+
+    public Joueur_bunco() {
+    }
+
     public Joueur_bunco(CollectionDes collection_des_){
         super(collection_des_);
+    }
 
+    public Joueur_bunco(String name, int id) {
+        super(name, id);
     }
 
     @Override
