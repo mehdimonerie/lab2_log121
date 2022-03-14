@@ -23,10 +23,10 @@ public class Joueur implements Comparable<Joueur>{
         this.id = id;
     }
 
-
     public ArrayList<Integer> getResult() {
         return listResult;
     }
+
     public int addResult(){
         for(int i = 0; i < listResult.size();i++) {
             this.result += listResult.get(i);
@@ -46,8 +46,8 @@ public class Joueur implements Comparable<Joueur>{
         this.name = name;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScore(int score_) {
+        this.score = score_;
     }
 
     public String getName() {
@@ -55,7 +55,7 @@ public class Joueur implements Comparable<Joueur>{
     }
 
     public int getScore() {
-        return score;
+        return this.score;
     }
 
     public CollectionDes getListe_des() {

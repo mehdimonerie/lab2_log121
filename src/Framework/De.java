@@ -16,7 +16,6 @@ public class De implements Comparable {
     public int throwingDie(){
         int actual_face_ = (int)(Math.random( )*nbFaces + 1);
         this.actual_face=actual_face_;
-        System.out.println(actual_face);
         return actual_face;
     }
 
