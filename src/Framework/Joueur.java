@@ -34,6 +34,23 @@ public class Joueur implements Comparable<Joueur>{
         return result;
     }
 
+    public boolean same_dices() {
+        boolean is_the_same = false;
+        int temp_actual_face = getListe_des().get(0).getActual_face();
+        int count = 0;
+        for (int i = 0; i < getListe_des().getDes_collection().size(); i++) {
+            if(getListe_des().get(i).getActual_face()==temp_actual_face){
+                count+=1;
+            }
+        }
+        if(count==getListe_des().getDes_collection().size()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public void setId(int id) {
         this.id = id;
     }

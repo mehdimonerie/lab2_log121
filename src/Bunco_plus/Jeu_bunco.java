@@ -26,7 +26,8 @@ public class Jeu_bunco extends Jeu {
         Joueur joueur = super.getCollectionJoueurs().get(super.getActual_joueur());
         int des_gagnants=0;
         int score_changed = 0;
-
+        int des_pareils=0;
+        int actual_face_first = joueur.getListe_des().get(0).getActual_face();
         for (Iterator<De> j = joueur.getListe_des().getDes_collection().iterator(); j.hasNext();) {
             De de = j.next();
 
@@ -35,10 +36,18 @@ public class Jeu_bunco extends Jeu {
                 des_gagnants+=1;
                 score_changed+=1;
             }
-            if(des_gagnants==super.getNbDes()){
-                score+=21;
-                score_changed+=1;
+            if(de.getActual_face()==actual_face_first){
+                des_pareils+=1;
             }
+            if(des_gagnants==super.getNbDes() && de.getActual_face()==actual_tour){
+                score+=21;
+                score_changed+=21;
+            }
+            if(des_gagnants==super.getNbDes() && de.getActual_face()!=actual_tour){
+                score+=5;
+                score_changed+=5;
+            }
+
             super.getCollectionJoueurs().get(super.getActual_joueur()).setScore(score);
         }
         System.out.println("super.getCollectionJoueurs().get(super.getActual_joueur()).toString() : "+super.getCollectionJoueurs().get(super.getActual_joueur()).toString());
@@ -52,7 +61,6 @@ public class Jeu_bunco extends Jeu {
         else{
             return score_changed;
         }
-
     }
 
     public boolean prochainJoueur(){
@@ -88,34 +96,6 @@ public class Jeu_bunco extends Jeu {
 
     }
 
-
-    public CollectionJoueur calculerLeVainqueur(){
-        //TODO --> retourne les joueurs tries selon l'ordre croissant des scores
-        for (int i = 0; i < collection_joueur.size()-1; i++){
-            int min = i;
-            for (int j = i+1; j < collection_joueur.size(); j++){
-                if (collection_joueur.get(j).compareTo(collection_joueur.get(min)) == -1){
-                    min = j;
-                }
-            }
-            if (i != min){
-                Joueur temp = new Joueur();
-                    temp.setName(collection_joueur.get(i).getName());
-                    temp.setScore(collection_joueur.get(i).getScore());
-                    temp.setId(collection_joueur.get(i).getId());
-
-
-                collection_joueur.get(i).setName(collection_joueur.get(min).getName());
-                collection_joueur.get(i).setScore(collection_joueur.get(min).getScore());
-                collection_joueur.get(i).setId(collection_joueur.get(min).getId());
-
-                collection_joueur.get(min).setName(temp.getName());
-                collection_joueur.get(min).setScore(temp.getScore());
-                collection_joueur.get(min).setId(temp.getId());
-            }
-        }
-        return collection_joueur;
-    }
 
     @Override
     public void nouveauTour() {

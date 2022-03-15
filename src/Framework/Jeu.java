@@ -53,7 +53,7 @@ public abstract class Jeu {
     public void loop() {
     }
 
-    public String getWinner() {
+    public String calculerLeVainqueur() {
         String return_gagnant = "";
         int count=0;
         int score=0;
@@ -76,7 +76,7 @@ public abstract class Jeu {
             for(int i=0;i<gagnants.size();i++){
                 return_gagnant = return_gagnant + gagnants.get(i).toString()+" ";
             }
-            return_gagnant = return_gagnant+" "+score;
+            return_gagnant = return_gagnant+" avec"+score+" points";
         }
         else if(score==0){
             return_gagnant = "Partie nulle";
@@ -89,9 +89,9 @@ public abstract class Jeu {
 
     public abstract int calculerScoreTour();
 
-    public CollectionJoueur calculerLeVainqueur(){
-        return null;
-    }
+    //public CollectionJoueur calculerLeVainqueur(){
+    //    return null;
+    //}
 
     public CollectionJoueur getCollectionJoueurs() {
         return collectionJoueurs;

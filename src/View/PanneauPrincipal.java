@@ -138,8 +138,8 @@ public class PanneauPrincipal extends JPanel {
 					boolean is_prochain_joueur = jeu.prochainJoueur();
 					System.out.println("is_prochain_joueur : "+is_prochain_joueur);
 					if(is_prochain_joueur==false){
-						jeu.getWinner();
-						info_tour_string=(jeu.getWinner());
+						jeu.calculerLeVainqueur();
+						info_tour_string=(jeu.calculerLeVainqueur());
 					}
 					else{
 						info_tour_string = "Joueur " + jeu.getActual_joueur() + " prêt ";
@@ -151,8 +151,8 @@ public class PanneauPrincipal extends JPanel {
 					boolean is_prochain_joueur = jeu.prochainJoueur();
 					System.out.println("is_prochain_joueur : "+is_prochain_joueur);
 					if(is_prochain_joueur==false){
-						jeu.getWinner();
-						info_tour_string=(jeu.getWinner());
+						jeu.calculerLeVainqueur();
+						info_tour_string=(jeu.calculerLeVainqueur());
 					}
 					else{
 						info_tour_string = "Joueur " + jeu.getActual_joueur() + " prêt ";

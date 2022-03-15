@@ -37,6 +37,7 @@ public class CollectionJoueur {
         };
     }
 
+
     /*public void set(int index, Joueur newJoueur){
         this.joueur_collection.toArray()[index].setName(newJoueur.getName());
         this.joueur_collection.toArray()[index].setScore(newJoueur.getScore());
