@@ -25,7 +25,7 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         collectionJoueurs = new CollectionJoueur();
         for (int i=0; i< nbJoueur; i++){
             CollectionDes des = new CollectionDes(3,6);
-            Joueur j = new Joueur("Joueur"+ 1,i,des);
+            Joueur j = new Joueur("Joueur_"+i,i,des);
             j.setId(i);
             collectionJoueurs.ajouterJoueur(j);
         }
@@ -77,12 +77,13 @@ public class Jeu_bunco extends Jeu implements IStrategie {
     }
 
     public void jouerTour(){
+        actual_tour = 1;
 
-        while(actual_tour<=6) {
+        while(actual_tour<7) {
             while(index_joueur<3) {
                 actual_joueur = collectionJoueurs.get(index_joueur);
                 actual_lancer = 1;
-                System.out.println("++++++++++++ Tour " + actual_tour+1 + ", Joueur "+index_joueur+1 + ", Lancer "+actual_lancer+" ++++++++++++++");
+                System.out.println("++++++++++++ Tour " + actual_tour + ", Joueur "+index_joueur+ ", Lancer "+actual_lancer+" ++++++++++++++");
                 while (actual_lancer < 7) {
                     actual_joueur.lancer_des();
                     boolean tour_gagne = calculerScoreTour();
@@ -134,15 +135,13 @@ public class Jeu_bunco extends Jeu implements IStrategie {
                 collectionJoueurs.get(min).setId(temp.getId());
             }
         }
-        /* pour afficher le resultat dans la console
 
-
-        for (int k = 0; k< collection_joueur.size(); k++){
-            System.out.println("n° " + k + " : " +collection_joueur.get(k).getName()
-                    + " avec " + collection_joueur.get(k).getScore() + " points");
+        for (int k = 0; k< collectionJoueurs.size(); k++){
+            System.out.println("Joueur " +collectionJoueurs.get(k).getId() + " avec " + collectionJoueurs.get(k).getScore() + " points");
         }
-
-        */
+        System.out.println("Le gagnant est le joueur " +collectionJoueurs.get(0).getId()  + " avec " + collectionJoueurs.get(0).getScore() + " points");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
 
         return collection_joueur;
     }
