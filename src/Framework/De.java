@@ -38,11 +38,10 @@ public class De implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (o == null){
+    public int compareTo(Object o){
 
-        }
         De de = (De) o;
+
         int retour = 0;
         if (this.getActual_face() > ((De) o).getActual_face()){
             retour = -1;

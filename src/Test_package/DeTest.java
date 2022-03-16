@@ -36,10 +36,4 @@ public class DeTest {
         de1.setActual_face(4);
         assertTrue(de1.compareTo(de1)==0);
     }
-
-    @Test(expected=IllegalArgumentException.class)
-    public void deNullTest(){
-        de1.setActual_face(4);
-        de1.compareTo(null);
-    }
 }

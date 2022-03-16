@@ -60,9 +60,9 @@ public class Joueur implements Comparable {
         Joueur j = (Joueur) o;
         int retour=0;
         if (this.score > j.getScore()){
-            retour = 1;
-        } else if (this.score < j.getScore()){
             retour = -1;
+        } else if (this.score < j.getScore()){
+            retour = 1;
         }
         return retour;
     }
