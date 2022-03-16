@@ -32,7 +32,7 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         collectionJoueurs = new CollectionJoueur();
         for (int i=0; i< nbJoueur; i++){
             CollectionDes des = new CollectionDes(3,6);
-            Joueur j = new Joueur("Joueur"+ 1,i,des);
+            Joueur j = new Joueur("Joueur_"+ i,i,des);
             j.setId(i);
             collectionJoueurs.ajouterJoueur(j);
         }
@@ -72,7 +72,9 @@ public class Jeu_bunco extends Jeu implements IStrategie {
                 des_pareils+=1;
             }
             if(des_gagnants==joueur.getCollection_des().getDes_collection().size() && de.getActual_face()==actual_lancer){
+                score-=3; //les points des dés pareils
                 score+=21;
+                score_changed-=3;
                 score_changed+=21;
                 lancer=false;
             }
@@ -95,7 +97,7 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         actual_tour = 1;
 
         while(actual_tour<7) {
-            while(index_joueur<3) {
+            while(index_joueur<collectionJoueurs.size()) {
                 actual_joueur = collectionJoueurs.get(index_joueur);
                 actual_lancer = 1;
                 System.out.println("++++++++++++ Tour " + actual_tour + ", Joueur "+index_joueur+ ", Lancer "+actual_lancer+" ++++++++++++++");
@@ -157,6 +159,7 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         for (int k = 0; k< collectionJoueurs.size(); k++){
             System.out.println("Joueur " +collectionJoueurs.get(k).getId() + " avec " + collectionJoueurs.get(k).getScore() + " points");
         }
+
         System.out.println("Le gagnant est le joueur " +collectionJoueurs.get(0).getId()  + " avec " + collectionJoueurs.get(0).getScore() + " points");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
