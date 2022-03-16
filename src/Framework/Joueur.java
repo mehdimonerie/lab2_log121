@@ -33,6 +33,10 @@ public class Joueur implements Comparable {
         return id;
     }
 
+    public CollectionDes getCollection_des() {
+        return collection_des;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -65,5 +69,16 @@ public class Joueur implements Comparable {
             retour = 1;
         }
         return retour;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Joueur{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", score=" + score +
+                ", liste_des=" + collection_des.toString() +
+                '}';
     }
 }

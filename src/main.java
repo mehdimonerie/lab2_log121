@@ -7,6 +7,7 @@
  */
 
 import Bunco_plus.Jeu_bunco;
+import Framework.Creator;
 import Framework.Jeu;
 //import View.Environnement;
 import View.FenetrePrincipale;
@@ -14,6 +15,9 @@ import View.FenetrePrincipale;
 public class main {
 
     public static void main(String[] args) {
+        Creator creator = new Creator();
+        creator.getJeu().jouerTour();
+
 
         //Jeu game1 = new Jeu();
 

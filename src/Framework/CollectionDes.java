@@ -16,6 +16,10 @@ public class CollectionDes {
         }
     }
 
+    public De get(int index){
+        return (De) this.des_collection.toArray()[index];
+    }
+
     //constructeur de collection vide
     public CollectionDes(){}
 
@@ -25,6 +29,13 @@ public class CollectionDes {
 
     public Collection<De> getDes_collection() {
         return des_collection;
+    }
+
+    @Override
+    public String toString() {
+        return "CollectionDes{" +
+                "des_collection=" + des_collection.toString() +
+                '}';
     }
 
 

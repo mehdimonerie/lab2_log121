@@ -50,4 +50,11 @@ public class De implements Comparable {
         }
         return retour;
     }
+
+    @Override
+    public String toString() {
+        return "De{" +
+                "actual_face=" + actual_face +
+                '}';
+    }
 }
