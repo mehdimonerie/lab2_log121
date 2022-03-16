@@ -25,6 +25,10 @@ public class CollectionJoueur {
         this.joueur_collection.toArray()[index].setListe_des(newJoueur.getListe_des());
     }*/
 
+    /**
+     * Patron Iterateur pour pouvoir naviguer entre les element de la colection
+      */
+
     public Iterator<Joueur> creeIterateur(){
         return new Iterator<Joueur>() {
             @Override

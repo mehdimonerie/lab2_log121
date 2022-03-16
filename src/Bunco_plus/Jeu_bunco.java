@@ -16,6 +16,9 @@ public class Jeu_bunco extends Jeu implements IStrategie {
     private CollectionJoueur collection_joueur;
 
 
+    /**
+     * initialise les joueurs du jeu
+     */
     @Override
     public void creation_joueur() {
         System.out.println("Combien de joueur pour cette partie : ");
@@ -37,10 +40,49 @@ public class Jeu_bunco extends Jeu implements IStrategie {
 
     }
 
+    /**
+     * methode qui gere le deroulement d'un tour
+     */
+    public void jouerTour(){
+
+        while(actual_tour<=6) {
+            while(index_joueur<3) {
+                actual_joueur = collectionJoueurs.get(index_joueur);
+                actual_lancer = 1;
+                System.out.println("++++++++++++ Tour " + actual_tour + ", Joueur "+index_joueur+", Lancer "+actual_lancer+" ++++++++++++++");
+                while (actual_lancer < 7) {
+                    actual_joueur.lancer_des();
+                    boolean tour_gagne = calculerScoreTour();
+                    System.out.println(actual_joueur.toString());
+                    if (tour_gagne == true) {
+                        System.out.println("Score du lancer : " + score_changed);
+                        System.out.println("Lancer les dés en pesant sur enter : ");
+                        Scanner scanner = new Scanner(System.in);
+                        scanner.nextLine();
+                        actual_lancer += 1;
+                    } else {
+                        System.out.println("Score du lancer : " + score_changed);
+                        System.out.println("C'est le tour du prochain joueur, presser enter");
+                        Scanner scanner = new Scanner(System.in);
+                        scanner.nextLine();
+                        actual_lancer = 7;
+                    }
+                }
+                index_joueur+=1;
+            }
+            index_joueur=0;
+            actual_tour+=1;
+        }
+        calculerLeVainqueur();
+    }
+
+    /**
+     * cumule le score du joueur de ce tour avec celui du tour precedent
+     *             et decide s'il faut passer la main au prochain joueur ou non
+     * @return true si un joueur dois continuer de jouer
+     */
     public boolean calculerScoreTour(){
-        /*TODO --> cumule le score du joueur de ce tour avec celui du tour precedent
-            et decide s'il faut passer la main au prochain joueur ou non
-        */
+
         int score=actual_joueur.getScore();
         Joueur joueur = actual_joueur;
         int des_gagnants=0;
@@ -76,39 +118,10 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         return lancer;
     }
 
-    public void jouerTour(){
-
-        while(actual_tour<=6) {
-            while(index_joueur<3) {
-                actual_joueur = collectionJoueurs.get(index_joueur);
-                actual_lancer = 1;
-                System.out.println("++++++++++++ Tour " + actual_tour+1 + ", Joueur "+index_joueur+1 + ", Lancer "+actual_lancer+" ++++++++++++++");
-                while (actual_lancer < 7) {
-                    actual_joueur.lancer_des();
-                    boolean tour_gagne = calculerScoreTour();
-                    System.out.println(actual_joueur.toString());
-                    if (tour_gagne == true) {
-                        System.out.println("Score du lancer : " + score_changed);
-                        System.out.println("Lancer les dés en pesant sur enter : ");
-                        Scanner scanner = new Scanner(System.in);
-                        scanner.nextLine();
-                        actual_lancer += 1;
-                    } else {
-                        System.out.println("Score du lancer : " + score_changed);
-                        System.out.println("C'est le tour du prochain joueur, presser enter");
-                        Scanner scanner = new Scanner(System.in);
-                        scanner.nextLine();
-                        actual_lancer = 7;
-                    }
-                }
-                index_joueur+=1;
-            }
-            index_joueur=0;
-            actual_tour+=1;
-        }
-        calculerLeVainqueur();
-    }
-
+    /**
+     * compare les joueurs du jeu en fonction de leur score pour trouver le vainqueur
+     * @return une collection de joueur ordonné du gagnant au perdant
+     */
     public CollectionJoueur calculerLeVainqueur(){
         //TODO --> retourne les joueurs tries selon l'ordre croissant des scores
         for (int i = 0; i < collectionJoueurs.size()-1; i++){

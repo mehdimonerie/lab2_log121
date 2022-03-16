@@ -16,6 +16,9 @@ public class De implements Comparable {
         }
     }
 
+    /**
+     * fait rouler le de
+     */
     public void throwingDie(){
         int result = (int)(Math.random( )*nbFaces + 1);
         this.actual_face = result;
@@ -37,6 +40,14 @@ public class De implements Comparable {
         this.id = id;
     }
 
+
+    /**
+     *
+     * @param o Object cast into De
+     * @return 1 si l'arg est plus grand que this
+     *        -1 si c'est l'inverse
+     *         0 en cas d'egalite
+     */
     @Override
     public int compareTo(Object o){
 
