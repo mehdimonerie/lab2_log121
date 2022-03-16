@@ -1,8 +1,13 @@
+/**
+ * Class CollectionDe
+ * @since Hiver 2022
+ * @version 1.0
+ * Classe possédant la collection de dés
+ */
 package Framework;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 public class CollectionDes {
     Collection<De> des_collection = new ArrayList<>();

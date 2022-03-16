@@ -1,7 +1,12 @@
-package Framework;
+/**
+ * Class Joueur
+ * @since Hiver 2022
+ * @version 1.0
+ * Classe objet joueur
+ */
 
-import java.util.ArrayList;
-import java.util.Collection;
+
+package Framework;
 import java.util.Iterator;
 
 public class Joueur implements Comparable {

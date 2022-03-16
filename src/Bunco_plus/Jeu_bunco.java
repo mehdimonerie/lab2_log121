@@ -1,8 +1,12 @@
+/**
+ * Class jeu_bunco
+ * @since Hiver 2022
+ * @version 1.0
+ * Classe concrète étendue de Jeu
+ */
+
 package Bunco_plus;
-
 import Framework.*;
-
-import javax.imageio.stream.ImageInputStream;
 import java.util.Iterator;
 import java.util.Scanner;
 

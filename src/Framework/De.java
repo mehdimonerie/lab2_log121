@@ -1,5 +1,11 @@
-package Framework;
+/**
+ * Class De
+ * @since Hiver 2022
+ * @version 1.0
+ * Classe objet De
+ */
 
+package Framework;
 import java.util.ArrayList;
 
 public class De implements Comparable {

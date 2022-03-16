@@ -1,5 +1,11 @@
-package Framework;
+/**
+ * Class CollectionJoueur
+ * @since Hiver 2022
+ * @version 1.0
+ * Classe possédant la collection de joueurs
+ */
 
+package Framework;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -19,12 +25,6 @@ public class CollectionJoueur {
         return (Joueur) this.joueur_collection.toArray()[index];
     }
 
-    /*public void set(int index, Joueur newJoueur){
-        this.joueur_collection.toArray()[index].setName(newJoueur.getName());
-        this.joueur_collection.toArray()[index].setScore(newJoueur.getScore());
-        this.joueur_collection.toArray()[index].setListe_des(newJoueur.getListe_des());
-    }*/
-
     /**
      * Patron Iterateur pour pouvoir naviguer entre les element de la colection
       */
@@ -42,7 +42,6 @@ public class CollectionJoueur {
             }
         };
     }
-
 
     public Collection<Joueur> getJoueur_collection() { return joueur_collection;
     }

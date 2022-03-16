@@ -1,5 +1,12 @@
-package Framework;
+/**
+ * Class creator
+ * @since Hiver 2022
+ * @version 1.0
+ * Classe Fabrique qui crée l'objet Jeu
+ */
 
+
+package Framework;
 import Bunco_plus.Jeu_bunco;
 
 public class Creator{
