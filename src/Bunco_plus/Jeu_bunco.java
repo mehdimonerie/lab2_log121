@@ -36,9 +36,6 @@ public class Jeu_bunco extends Jeu implements IStrategie {
     }
 
     public boolean calculerScoreTour(){
-        /*TODO --> cumule le score du joueur de ce tour avec celui du tour precedent
-            et decide s'il faut passer la main au prochain joueur ou non
-        */
         int score=super.actual_joueur.getScore();
         Joueur joueur = super.actual_joueur;
         int des_gagnants=0;
@@ -61,7 +58,7 @@ public class Jeu_bunco extends Jeu implements IStrategie {
             if(des_gagnants==joueur.getCollection_des().getDes_collection().size() && de.getActual_face()==super.actual_lancer){
                 score+=21;
                 super.score_changed+=21;
-                lancer=true;
+                lancer=false;
             }
             if(des_gagnants==joueur.getCollection_des().getDes_collection().size() && de.getActual_face()!=super.actual_lancer){
                 score+=5;
@@ -99,15 +96,12 @@ public class Jeu_bunco extends Jeu implements IStrategie {
                 super.collectionJoueurs.get(min).setId(temp.getId());
             }
         }
-        /* pour afficher le resultat dans la console
+        //pour afficher le resultat dans la console
 
-
-        for (int k = 0; k< collection_joueur.size(); k++){
-            System.out.println("n° " + k + " : " +collection_joueur.get(k).getName()
-                    + " avec " + collection_joueur.get(k).getScore() + " points");
+        for (int k = 0; k< super.collectionJoueurs.size(); k++){
+            System.out.println("Joueur " +super.collectionJoueurs.get(k).getId() + " avec " + super.collectionJoueurs.get(k).getScore() + " points");
         }
-
-        */
+        System.out.println("Le gagnant est le joueur " +super.collectionJoueurs.get(0).getId()  + " avec " + super.collectionJoueurs.get(0).getScore() + " points");
 
         return collection_joueur;
     }

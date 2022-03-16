@@ -26,7 +26,6 @@ public abstract class  Jeu {
     }
 
     public void jouerTour(){
-
         while(actual_tour<=6) {
             while(index_joueur<3) {
                 actual_joueur = collectionJoueurs.get(index_joueur);
