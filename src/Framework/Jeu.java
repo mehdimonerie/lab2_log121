@@ -1,6 +1,5 @@
 package Framework;
 
-
 public abstract class  Jeu {
 
     /**
@@ -15,12 +14,8 @@ public abstract class  Jeu {
 
     public abstract void jouerTour();
     public abstract void creation_joueur();
-
     public abstract void creation_des();
-
     public abstract boolean calculerScoreTour();
-
     public abstract CollectionJoueur calculerLeVainqueur();
-
 
 }
