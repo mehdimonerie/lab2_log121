@@ -1,116 +1,70 @@
 package Framework;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.Scanner;
 
-public abstract class Jeu {
+public abstract class  Jeu {
     int nb_tours;
-    int actual_tour = 0;
-    int nbJoueurs = 3;
-    int nbDes = 3;
-    int nbFaceDe = 6;
-    int actual_joueur = 0;
+    int nbJoueurs;
+    int nbDes;
+    int nbFaceDe;
+    int actual_tour=1;
+    public int index_joueur=0;
+    public int actual_lancer=1;
+    public int score_changed=0;
+    public Joueur actual_joueur;
+    public CollectionJoueur collectionJoueurs;
 
-    CollectionJoueur collectionJoueurs;
-
-    public Jeu() {
-        collectionJoueurs = new CollectionJoueur();
-        initParamJeu();
-        log_jeu();
-
+    public Jeu(){
+        creation_joueur();
+        creation_des();
     }
 
-    public void rollDices() {
-        for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext(); ) {
-            Joueur joueur = i.next();
-            for (Iterator<De> j = joueur.getListe_des().getDes_collection().iterator(); j.hasNext(); ) {
-                De de = j.next();
-                de.throwingDie();
+    public Jeu(CollectionJoueur col){
+        this.collectionJoueurs =col;
+    }
+
+    public void jouerTour(){
+
+        while(actual_tour<=6) {
+            while(index_joueur<3) {
+                actual_joueur = collectionJoueurs.get(index_joueur);
+                actual_lancer = 1;
+                System.out.println("++++++++++++ Tour " + actual_tour + ", Joueur "+index_joueur+", Lancer "+actual_lancer+" ++++++++++++++");
+                while (actual_lancer < 7) {
+                    actual_joueur.lancer_des();
+                    boolean tour_gagne = calculerScoreTour();
+                    System.out.println(actual_joueur.toString());
+                    if (tour_gagne == true) {
+                        System.out.println("Score du lancer : " + score_changed);
+                        System.out.println("Lancer les dés en pesant sur enter : ");
+                        Scanner scanner = new Scanner(System.in);
+                        scanner.nextLine();
+                        actual_lancer += 1;
+                    } else {
+                        System.out.println("Score du lancer : " + score_changed);
+                        System.out.println("C'est le tour du prochain joueur, presser enter");
+                        Scanner scanner = new Scanner(System.in);
+                        scanner.nextLine();
+                        actual_lancer = 7;
+                    }
+                }
+                index_joueur+=1;
             }
+            index_joueur=0;
+            actual_tour+=1;
         }
+        calculerLeVainqueur();
     }
 
+    public abstract void creation_joueur();
 
-    public void initParamJeu() {
-        for (int i = 0; i < nbJoueurs; i++) {
-            CollectionDes collectionDes = new CollectionDes();
-            for (int j = 0; j < nbDes; j++) {
-                De de = new De(nbFaceDe);
-                de.setId(j + 1);
-                collectionDes.ajouterDe(de);
-            }
-            Joueur joueur = new Joueur(collectionDes);
-            joueur.setId(i);
-            collectionJoueurs.ajouterJoueur(joueur);
-        }
-        rollDices();
-    }
+    public abstract void creation_des();
 
-    public int getNbDes() {
-        return nbDes;
-    }
+    public abstract boolean calculerScoreTour();
 
-    public void loop() {
-    }
-
-    public String getWinner() {
-        String return_gagnant = "";
-        int count=0;
-        int score=0;
-        ArrayList<Integer> gagnants = new ArrayList<Integer>();
-        int a = collectionJoueurs.getJoueur_collection().stream().mapToInt(Joueur::getScore).max().orElse(-1);
-        Joueur gagnant;
-        for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext(); ) {
-            gagnant = i.next();
-            if (gagnant.getScore() == a) {
-                return_gagnant = "Le gagnant est Joueur " + gagnant.getId() + " avec le score de " + gagnant.getScore() + " points.";
-                System.out.println(return_gagnant);
-                count+=1;
-                gagnants.add(gagnant.getId());
-                score = gagnant.getScore();
-            }
-        }
-
-        if(count>=2){
-            return_gagnant = "Égalité des joueurs ";
-            for(int i=0;i<gagnants.size();i++){
-                return_gagnant = return_gagnant + gagnants.get(i).toString()+" ";
-            }
-            return_gagnant = return_gagnant+" "+score;
-        }
-        else if(score==0){
-            return_gagnant = "Partie nulle";
-        }
-        return return_gagnant;
-
-    }
+    public abstract CollectionJoueur calculerLeVainqueur();
 
 
-
-    public abstract int calculerScoreTour();
-
-    public CollectionJoueur calculerLeVainqueur(){
-        return null;
-    }
-
-    public CollectionJoueur getCollectionJoueurs() {
-        return collectionJoueurs;
-    }
-
-    public abstract void log_jeu();
-
-    public int getActual_joueur() {
-        return actual_joueur;
-    }
-    public abstract boolean prochainJoueur();
-
-    public abstract void nouveauTour() ;
-
-
-
-    public abstract int getActual_tour();
-
-    protected void setActual_joueur(int i) {
-        actual_joueur=i;
-    }
 }

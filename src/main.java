@@ -9,22 +9,26 @@
 import Bunco_plus.Jeu_bunco;
 import Framework.Creator;
 import Framework.Jeu;
-import View.Environnement;
+//import View.Environnement;
 import View.FenetrePrincipale;
 
 public class main {
 
     public static void main(String[] args) {
-
-        //Model
         Creator creator = new Creator();
-        Jeu jeu1 = creator.getJeu();
-        //View
+        creator.getJeu().jouerTour();
+
+
+        //Jeu game1 = new Jeu();
+
+        /*
+        Jeu_bunco jeu = new Jeu_bunco();
         Environnement environnement = new Environnement();
+        environnement.setJeu(jeu);
+
         FenetrePrincipale fenetre = new FenetrePrincipale();
-        environnement.setJeu(jeu1);
         environnement.addPropertyChangeListener(fenetre);
         environnement.execute();
-
+        */
     }
 }

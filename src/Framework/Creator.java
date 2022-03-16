@@ -2,7 +2,7 @@ package Framework;
 
 import Bunco_plus.Jeu_bunco;
 
-public class Creator {
+public class Creator{
     Jeu jeu = null;
 
     public Creator(){
