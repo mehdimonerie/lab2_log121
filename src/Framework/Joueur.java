@@ -14,14 +14,17 @@ public class Joueur implements Comparable {
     public Joueur(){
     }
 
+    public Joueur(String name, int id,CollectionDes collection_des){
+        this.name = name;
+        this.id = id;
+        this.collection_des = collection_des;
+    }
+
     public Joueur(String name, int id){
         this.name = name;
         this.id = id;
     }
 
-    public Joueur(CollectionDes collection_des){
-        this.collection_des = collection_des;
-    }
 
     public void lancer_des(){
         for (Iterator<De> j = collection_des.getDes_collection().iterator(); j.hasNext(); ) {
