@@ -70,7 +70,7 @@ public class Jeu_bunco extends Jeu implements IStrategie {
             if(des_gagnants==joueur.getCollection_des().getDes_collection().size() && de.getActual_face()==actual_lancer){
                 score+=21;
                 score_changed+=21;
-                lancer=true;
+                lancer=false;
             }
             if(des_gagnants==joueur.getCollection_des().getDes_collection().size() && de.getActual_face()!=actual_lancer){
                 score+=5;
