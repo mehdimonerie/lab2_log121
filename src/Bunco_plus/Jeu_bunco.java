@@ -1,79 +1,123 @@
 package Bunco_plus;
 
-import Framework.CollectionDes;
-import Framework.CollectionJoueur;
-import Framework.Jeu;
-import Framework.Joueur;
+import Framework.*;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collection;
+import javax.imageio.stream.ImageInputStream;
+import java.util.Iterator;
+import java.util.Scanner;
 
-public class Jeu_bunco extends Jeu {
+public class Jeu_bunco extends Jeu implements IStrategie {
 
     private final int nb_tours = 6;
-    private final int score_gagnant = 21;
-    private int actual_tour= 0;
-    private int nb_joueurs = 3;
+    private int actual_tour;
     private CollectionJoueur collection_joueur;
-    private CollectionDes collectionDes;
+    //private CollectionDes collectionDes;
+    int score_changed = 0;
 
-    public Jeu_bunco(){
-        super();
+    @Override
+    public void creation_joueur() {
+        System.out.println("Combien de joueur pour cette partie : ");
+        Scanner scanner = new Scanner(System.in);
+        int nbJoueur = scanner.nextInt();
+
+        super.collectionJoueurs = new CollectionJoueur();
+        for (int i=0; i< nbJoueur; i++){
+            CollectionDes des = new CollectionDes(3,6);
+            Joueur j = new Joueur(des);
+            j.setId(i);
+            super.collectionJoueurs.ajouterJoueur(j);
+        }
+        super.actual_joueur = super.collectionJoueurs.get(super.index_joueur);
     }
 
+    @Override
+    public void creation_des() {
 
-
-    public int getActual_tour() {
-        return actual_tour;
     }
 
-    public void setActual_tour(int actual_tour) {
-        this.actual_tour = actual_tour;
-    }
-
-    public int getNb_joueurs() {
-        return nb_joueurs;
-    }
-
-    public void setNb_joueurs(int nb_joueurs) {
-        this.nb_joueurs = nb_joueurs;
-    }
-
-
-
-    public void calculerScoreTour(){
+    public boolean calculerScoreTour(){
         /*TODO --> cumule le score du joueur de ce tour avec celui du tour precedent
             et decide s'il faut passer la main au prochain joueur ou non
         */
+        int score=super.actual_joueur.getScore();
+        Joueur joueur = super.actual_joueur;
+        int des_gagnants=0;
+        super.score_changed =0;
+        int des_pareils=0;
+        int actual_face_first = joueur.getCollection_des().get(0).getActual_face();
+        boolean lancer = false;
+        for(Iterator<De> j = joueur.getCollection_des().getDes_collection().iterator(); j.hasNext();) {
+            De de = j.next();
 
-
-    }
-    public void calculerLeVainqueur(){
-        //TODO --> retourne les joueurs tries selon l'ordre croissant des scores
-
-        for (int i = 0; i < this.collection_joueur.size() - 1; i++)
-        {
-            int index = i;
-            for (int j = i + 1; j < this.collection_joueur.size(); j++)
-            {
-                if (this.collection_joueur.get(j).compareTo(this.collection_joueur.get(index)) == -1){
-                    index = j;
-                }
+            if(de.getActual_face()==super.actual_lancer){
+                score+=1;
+                des_gagnants+=1;
+                super.score_changed+=1;
+                lancer=true;
+            }
+            if(de.getActual_face()==actual_face_first){
+                des_pareils+=1;
+            }
+            if(des_gagnants==joueur.getCollection_des().getDes_collection().size() && de.getActual_face()==super.actual_lancer){
+                score+=21;
+                super.score_changed+=21;
+                lancer=true;
+            }
+            if(des_gagnants==joueur.getCollection_des().getDes_collection().size() && de.getActual_face()!=super.actual_lancer){
+                score+=5;
+                super.score_changed+=5;
+                lancer=true;
             }
 
-            Joueur min = this.collection_joueur.get(index);
-            //this.collection_joueur.get(index) = this.collection_joueur.get(i);
-            //this.collection_joueur.get(i) = min;
+            super.actual_joueur.setScore(score);
         }
-        /*for (int i=0; i < this.collection_joueur.size()-1; i++){
-            this.collection_joueur.get(i).compareTo(this.collection_joueur.get(i+1));
-        }
-
-         */
+        return lancer;
     }
 
+    public CollectionJoueur calculerLeVainqueur(){
+        //TODO --> retourne les joueurs tries selon l'ordre croissant des scores
+        for (int i = 0; i < super.collectionJoueurs.size()-1; i++){
+            int min = i;
+            for (int j = i+1; j < super.collectionJoueurs.size(); j++){
+                if (super.collectionJoueurs.get(j).compareTo(super.collectionJoueurs.get(min)) == -1){
+                    min = j;
+                }
+            }
+            if (i != min){
+                Joueur temp = new Joueur();
+                    temp.setName(super.collectionJoueurs.get(i).getName());
+                    temp.setScore(super.collectionJoueurs.get(i).getScore());
+                    temp.setId(super.collectionJoueurs.get(i).getId());
 
 
+                super.collectionJoueurs.get(i).setName(super.collectionJoueurs.get(min).getName());
+                super.collectionJoueurs.get(i).setScore(super.collectionJoueurs.get(min).getScore());
+                super.collectionJoueurs.get(i).setId(super.collectionJoueurs.get(min).getId());
+
+                super.collectionJoueurs.get(min).setName(temp.getName());
+                super.collectionJoueurs.get(min).setScore(temp.getScore());
+                super.collectionJoueurs.get(min).setId(temp.getId());
+            }
+        }
+        /* pour afficher le resultat dans la console
+
+
+        for (int k = 0; k< collection_joueur.size(); k++){
+            System.out.println("n° " + k + " : " +collection_joueur.get(k).getName()
+                    + " avec " + collection_joueur.get(k).getScore() + " points");
+        }
+
+        */
+
+        return collection_joueur;
+    }
+
+    public CollectionJoueur getCollection_joueur() {
+        return collection_joueur;
+    }
+
+    public void setCollection_joueur(CollectionJoueur collection_joueur) {
+        this.collection_joueur = collection_joueur;
+    }
 
 }
