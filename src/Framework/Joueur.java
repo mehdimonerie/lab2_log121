@@ -2,13 +2,14 @@ package Framework;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Joueur implements Comparable {
 
     private  int id;
     private String name;
     private int score;
-    private ArrayList<Integer> result = new ArrayList<Integer>();
+    private CollectionDes collection_des;
 
     public Joueur(){
     }
@@ -18,12 +19,14 @@ public class Joueur implements Comparable {
         this.id = id;
     }
 
-    public ArrayList<Integer> getResult() {
-        return result;
+    public Joueur(CollectionDes collection_des){
+        this.collection_des = collection_des;
     }
 
-    public void setResult(int val) {
-        this.result.add(val);
+    public void lancer_des(){
+        for (Iterator<De> j = collection_des.getDes_collection().iterator(); j.hasNext(); ) {
+            j.next().throwingDie();
+        }
     }
 
     public int getId() {
@@ -51,9 +54,6 @@ public class Joueur implements Comparable {
         this.score = score;
     }
 
-    public void setResult(ArrayList<Integer> result) {
-        this.result = result;
-    }
 
     @Override
     public int compareTo(Object o) {

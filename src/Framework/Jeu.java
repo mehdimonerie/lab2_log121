@@ -1,49 +1,46 @@
 package Framework;
 
+import java.util.Collection;
 import java.util.Iterator;
 
-public class Jeu {
+public abstract class  Jeu {
     int nb_tours;
-    int nbJoueurs = 3 ;
-    int nbDes = 3;
-    int nbFaceDe = 6;
+    int nbJoueurs;
+    int nbDes;
+    int nbFaceDe;
+    int actual_tour;
 
     CollectionJoueur collectionJoueurs;
-    CollectionDes collectionDes;
 
     public Jeu(){
-        collectionDes = new CollectionDes(nbDes, nbFaceDe);
-        collectionJoueurs = new CollectionJoueur();
-        initParamJeu();
+        creation_joueur();
+        creation_des();
+    }
 
-        for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext();) {
-            Joueur a = i.next();
-            for (Iterator<De> j = collectionDes.getDes_collection().iterator(); j.hasNext();) {
-                a.setResult(j.next().throwingDie());
+    public Jeu(CollectionJoueur col){
+        this.collectionJoueurs =col;
+    }
+
+    public void jouerTour(){
+        while (actual_tour != nb_tours) {
+            System.out.printf("++++++++++++ Tour "+actual_tour+ " ++++++++++++++");
+            for (Iterator<Joueur> i = collectionJoueurs.getJoueur_collection().iterator(); i.hasNext(); ) {
+                while (calculerScoreTour()){
+                    i.next().lancer_des();
+                }
             }
+
         }
+        calculerLeVainqueur();
     }
 
-    public void initParamJeu(){
-        for(int i = 0; i < nbJoueurs; i++){
-            Joueur joueur = new Joueur();
-            joueur.setId(i+1);
-            collectionJoueurs.ajouterJoueur(joueur);
-        }
-        for(int i = 0; i < nbDes; i++){
-            De de = new De(nbFaceDe);
-            de.setId(i+1);
-            collectionDes.ajouterDe(de);
-        }
-    }
+    public abstract void creation_joueur();
 
-    public void loop(){
-    }
+    public abstract void creation_des();
 
-    public void calculerScoreTour(){
-    }
-    public CollectionJoueur calculerLeVainqueur(){
-        return null;
-    }
+
+    public abstract boolean calculerScoreTour();
+
+    public abstract CollectionJoueur calculerLeVainqueur();
 
 }

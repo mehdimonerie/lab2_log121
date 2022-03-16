@@ -8,14 +8,14 @@
 
 import Bunco_plus.Jeu_bunco;
 import Framework.Jeu;
-import View.Environnement;
+//import View.Environnement;
 import View.FenetrePrincipale;
 
 public class main {
 
     public static void main(String[] args) {
 
-        Jeu game1 = new Jeu();
+        //Jeu game1 = new Jeu();
 
         /*
         Jeu_bunco jeu = new Jeu_bunco();

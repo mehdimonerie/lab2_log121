@@ -1,21 +1,47 @@
 package Bunco_plus;
 
-import Framework.CollectionDes;
-import Framework.CollectionJoueur;
-import Framework.Jeu;
-import Framework.Joueur;
+import Framework.*;
 
-public class Jeu_bunco extends Jeu {
+import javax.imageio.stream.ImageInputStream;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class Jeu_bunco extends Jeu implements IStrategie {
 
     private final int nb_tours = 6;
     private int actual_tour;
     private CollectionJoueur collection_joueur;
-    private CollectionDes collectionDes;
+    private Joueur actual_joueur;
+    //private CollectionDes collectionDes;
 
-    public void calculerScoreTour(){
+    @Override
+    public void creation_joueur() {
+        /*System.out.println("combien de joueur pour cette partie : ");
+        Scanner scanner = new Scanner(System.in);
+        int nbJoueur = scanner.nextInt();*/
+        int nbJoueur = 3;
+
+        collection_joueur = new CollectionJoueur();
+        for (int i=0; i< nbJoueur; i++){
+            CollectionDes des = new CollectionDes(3,6);
+            Joueur j = new Joueur(des);
+            this.collection_joueur.ajouterJoueur(j);
+        }
+
+        this.actual_joueur = collection_joueur.get(0);
+
+    }
+
+    @Override
+    public void creation_des() {
+
+    }
+
+    public boolean calculerScoreTour(){
         /*TODO --> cumule le score du joueur de ce tour avec celui du tour precedent
             et decide s'il faut passer la main au prochain joueur ou non
         */
+        return true;
     }
 
     public CollectionJoueur calculerLeVainqueur(){
@@ -64,11 +90,4 @@ public class Jeu_bunco extends Jeu {
         this.collection_joueur = collection_joueur;
     }
 
-    public CollectionDes getCollectionDes() {
-        return collectionDes;
-    }
-
-    public void setCollectionDes(CollectionDes collectionDes) {
-        this.collectionDes = collectionDes;
-    }
 }
