@@ -27,5 +27,9 @@ public class CollectionDes {
         return des_collection;
     }
 
+    public De get(int index){
+        return (De) this.des_collection.toArray()[index];
+    }
+
 
 }

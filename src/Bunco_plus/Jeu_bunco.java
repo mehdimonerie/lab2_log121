@@ -6,13 +6,13 @@ import javax.imageio.stream.ImageInputStream;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class Jeu_bunco extends Jeu implements IStrategie {
+public class Jeu_bunco extends Jeu {
 
     private final int nb_tours = 6;
-    private int actual_tour;
+    private int actual_tour=1;
     private CollectionJoueur collection_joueur;
     private Joueur actual_joueur;
-    //private CollectionDes collectionDes;
+    boolean nextJoueur = false;
 
     @Override
     public void creation_joueur() {
@@ -25,6 +25,7 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         for (int i=0; i< nbJoueur; i++){
             CollectionDes des = new CollectionDes(3,6);
             Joueur j = new Joueur(des);
+            j.setId(i+1);
             this.collection_joueur.ajouterJoueur(j);
         }
 
@@ -37,12 +38,37 @@ public class Jeu_bunco extends Jeu implements IStrategie {
 
     }
 
-    public boolean calculerScoreTour(){
+    public void calculerScoreTour(){
         /*TODO --> cumule le score du joueur de ce tour avec celui du tour precedent
             et decide s'il faut passer la main au prochain joueur ou non
         */
-        return true;
-    }
+            for (Iterator<Joueur> i = collection_joueur.getJoueur_collection().iterator(); i.hasNext(); ) {
+                Joueur a = i.next();
+                nextJoueur = false;
+                while(!nextJoueur) {
+                    int tempScore = a.getScore();
+                    a.lancer_des();
+                    if(a.getCollection_des().get(0).getActual_face() == a.getCollection_des().get(1).getActual_face()){
+                        if(a.getCollection_des().get(1).getActual_face() == a.getCollection_des().get(2).getActual_face()){
+                            if(a.getCollection_des().get(0).getActual_face() == actual_tour){
+                                a.setScore(a.getScore()+21);
+                                nextJoueur = true;
+                            }else if(a.getCollection_des().get(0).getActual_face() != actual_tour){
+                                a.setScore(a.getScore()+5);
+                            }
+                        }
+                    }
+                    for(int j = 0; j < 3;j++){
+                        if (a.getCollection_des().get(j).getActual_face() == actual_tour){
+                            a.setScore(a.getScore()+1);
+                        }
+                    }
+                    if (tempScore == a.getScore()){
+                        nextJoueur = true;
+                    }
+                }
+            }
+        }
 
     public CollectionJoueur calculerLeVainqueur(){
         //TODO --> retourne les joueurs tries selon l'ordre croissant des scores

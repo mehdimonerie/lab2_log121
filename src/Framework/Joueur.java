@@ -8,7 +8,7 @@ public class Joueur implements Comparable {
 
     private  int id;
     private String name;
-    private int score;
+    private int score = 0;
     private CollectionDes collection_des;
 
     public Joueur(){
@@ -27,6 +27,10 @@ public class Joueur implements Comparable {
         for (Iterator<De> j = collection_des.getDes_collection().iterator(); j.hasNext(); ) {
             j.next().throwingDie();
         }
+    }
+
+    public CollectionDes getCollection_des() {
+        return collection_des;
     }
 
     public int getId() {
@@ -54,6 +58,9 @@ public class Joueur implements Comparable {
         this.score = score;
     }
 
+    public void setCollection_des(CollectionDes collection_des) {
+        this.collection_des = collection_des;
+    }
 
     @Override
     public int compareTo(Object o) {
