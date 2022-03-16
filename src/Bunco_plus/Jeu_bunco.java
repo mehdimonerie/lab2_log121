@@ -16,6 +16,9 @@ public class Jeu_bunco extends Jeu implements IStrategie {
     private CollectionJoueur collection_joueur;
 
 
+    /**
+     * initialise les joueurs du jeu
+     */
     @Override
     public void creation_joueur() {
         System.out.println("Combien de joueur pour cette partie : ");
@@ -25,7 +28,7 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         collectionJoueurs = new CollectionJoueur();
         for (int i=0; i< nbJoueur; i++){
             CollectionDes des = new CollectionDes(3,6);
-            Joueur j = new Joueur("Joueur_"+i,i,des);
+            Joueur j = new Joueur("Joueur"+ 1,i,des);
             j.setId(i);
             collectionJoueurs.ajouterJoueur(j);
         }
@@ -37,10 +40,14 @@ public class Jeu_bunco extends Jeu implements IStrategie {
 
     }
 
+
+    /**
+     * cumule le score du joueur de ce tour avec celui du tour precedent
+     *             et decide s'il faut passer la main au prochain joueur ou non
+     * @return true si un joueur dois continuer de jouer
+     */
     public boolean calculerScoreTour(){
-        /*TODO --> cumule le score du joueur de ce tour avec celui du tour precedent
-            et decide s'il faut passer la main au prochain joueur ou non
-        */
+
         int score=actual_joueur.getScore();
         Joueur joueur = actual_joueur;
         int des_gagnants=0;
@@ -76,6 +83,10 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         return lancer;
     }
 
+
+    /**
+     * methode qui gere le deroulement d'un tour
+     */
     public void jouerTour(){
         actual_tour = 1;
 
@@ -110,8 +121,11 @@ public class Jeu_bunco extends Jeu implements IStrategie {
         calculerLeVainqueur();
     }
 
+    /**
+     * compare les joueurs du jeu en fonction de leur score pour trouver le vainqueur
+     * @return une collection de joueur ordonné du gagnant au perdant
+     */
     public CollectionJoueur calculerLeVainqueur(){
-        //TODO --> retourne les joueurs tries selon l'ordre croissant des scores
         for (int i = 0; i < collectionJoueurs.size()-1; i++){
             int min = i;
             for (int j = i+1; j < collectionJoueurs.size(); j++){

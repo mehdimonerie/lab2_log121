@@ -25,7 +25,9 @@ public class Joueur implements Comparable {
         this.id = id;
     }
 
-
+    /**
+     * Le joueur fait rouler tous les des de sa collection
+     */
     public void lancer_des(){
         for (Iterator<De> j = collection_des.getDes_collection().iterator(); j.hasNext(); ) {
             j.next().throwingDie();
@@ -62,6 +64,13 @@ public class Joueur implements Comparable {
     }
 
 
+    /**
+     *
+     * @param o Object cast into Joueur
+     * @return 1 si l'arg est plus grand que this
+     *        -1 si c'est l'inverse
+     *         0 en cas d'egalite
+     */
     @Override
     public int compareTo(Object o) {
         Joueur j = (Joueur) o;
